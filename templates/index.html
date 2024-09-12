@@ -8,40 +8,99 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <title>PDF merger</title>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/kOV2yC2U+xiYmG3Epe+72tdfgv8FmD3h9PU2V63pKFnJ8HG0/7tKcsmycyXY1YP3V8RcNxyEup7FQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>PDF Merger Tool</title>
+
+    <style>
+      body {
+        background-color: #f4f4f4;
+      }
+      nav {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .navbar {
+        justify-content: center;
+      }
+      .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      .container {
+        margin-top: 50px;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+      }
+      .form-group {
+        margin-top: 30px;
+      }
+      .custom-file-label::after {
+        content: "Browse";
+      }
+      .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f8f9fa;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      .btn {
+        transition: 0.3s;
+      }
+      .btn:hover {
+        transform: scale(1.05);
+      }
+      .progress {
+        display: none;
+      }
+    </style>
   </head>
   <body>
 
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand">PDFX</a>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </nav>
-      <div class="container mt-2">
+    <!-- Navbar with centered content -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-file-pdf text-danger"></i> PDFX
+      </a>
+    </nav>
 
-    <h1>PDFX - your favorite pdf merger tool</h1>
-    <form method="post" action="/merge" enctype="multipart/form-data">
+    <div class="container">
+      <h1>Merge Your PDF Files</h1>
+      <form method="post" action="/merge" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="exampleFormControlFile1">Select pdf files you want to merge</label>
-          <input name="pdfs" type="file" class="form-control-file" id="exampleFormControlFile1" multiple accept="pdf">
-          <input class="btn btn-primary mt-2" type="submit" value="Submit">
+          <label for="exampleFormControlFile1">Select PDF files to merge</label>
+          <div class="custom-file">
+            <input name="pdfs" type="file" class="custom-file-input" id="exampleFormControlFile1" multiple accept="application/pdf">
+            <label class="custom-file-label" for="exampleFormControlFile1">Choose files</label>
+          </div>
+          <small class="form-text text-muted">You can select up to two PDF files.</small>
         </div>
+        <button class="btn btn-primary btn-block" type="submit">
+          <i class="fas fa-file-upload"></i> Merge PDFs
+        </button>
       </form>
-   </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+      <!-- Progress bar for visual feedback during file merging -->
+      <div class="progress mt-3">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2024 PDFX | Simplifying PDF Merging</p>
+    </div>
+
+    <!-- Optional JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-    -->
+    
+
   </body>
 </html>
